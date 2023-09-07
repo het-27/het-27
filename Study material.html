@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Study Website</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #6093b1, #77cfc4);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        header {
+            background-color: #4d4d4d;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 10px;
+        }
+
+        .container {
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #ec5c87, #5552e6);
+            box-shadow:-16px 22px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        a {
+            color: #3d5083;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* CSS styles for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .download-count {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+         /* CSS styles for colorful download counts */
+         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .download-count {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .chemistry-count {
+            background-color: #ff2600; /* Orange */
+            color: white;
+        }
+
+        .biology-count {
+            background-color: #1ab91a; /* Green */
+            color: white;
+        }
+
+        .physics-count {
+            background-color: #34559b; /* Pink */
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Study Website</h1>
+    </header>
+    <div class="container">
+        <p>Find and download study materials below:</p>
+        <ul>
+            <li><a href="chemistry-notes.pdf" download>ChemistryNotes</a> <span id="chemistryDownloads" class="download-count chemistry-count">0 downloads</span></li>
+            <li><a href="biology-notes.pdf" download>Biology Notes</a> <span id="biologyDownloads" class="download-count biology-count">0 downloads</span></li>
+            <li><a href="physics-notes.pdf" download>Physics Notes</a> <span id="physicsDownloads" class="download-count physics-count">0 downloads</span></li>
+        </ul>
+    </div>
+    <div class="copyright">&copy; 2023 Your Study Website</div>
+    </div>
+    <script>
+        // JavaScript to track and display download counts
+        function trackDownloads() {
+            const chemistryLink = document.querySelector('a[href="chemistry-notes.pdf"]');
+            const biologyLink = document.querySelector('a[href="biology-notes.pdf"]');
+            const physicsLink = document.querySelector('a[href="physics-notes.pdf"]');
+
+            let chemistryCount = localStorage.getItem('chemistryDownloads') || 0;
+            let biologyCount = localStorage.getItem('biologyDownloads') || 0;
+            let physicsCount = localStorage.getItem('physicsDownloads') || 0;
+
+            chemistryLink.addEventListener('click', () => {
+                chemistryCount++;
+                localStorage.setItem('chemistryDownloads', chemistryCount);
+                document.getElementById('chemistryDownloads').textContent = chemistryCount + ' downloads';
+            });
+
+            biologyLink.addEventListener('click', () => {
+                biologyCount++;
+                localStorage.setItem('biologyDownloads', biologyCount);
+                document.getElementById('biologyDownloads').textContent = biologyCount + ' downloads';
+            });
+
+            physicsLink.addEventListener('click', () => {
+                physicsCount++;
+                localStorage.setItem('physicsDownloads',physicsCount);
+                document.getElementById('physicsDownloads').textContent = physicsCount + ' downloads';
+            });
+
+            document.getElementById('chemistryDownloads').textContent = chemistryCount + ' downloads';
+            document.getElementById('biologyDownloads').textContent = biologyCount + ' downloads';
+            document.getElementById('physicsDownloads').textContent = physicsCount + ' downloads';
+        }
+
+        trackDownloads();
+
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD6ptRaRQGaL6AbCK6k-P-buQhgrsyynGM",
+  authDomain: "study-material-a09b1.firebaseapp.com",
+  projectId: "study-material-a09b1",
+  storageBucket: "study-material-a09b1.appspot.com",
+  messagingSenderId: "456460637124",
+  appId: "1:456460637124:web:6a6d2e483d5e4bbd2bca91",
+  measurementId: "G-CB72XBP4G7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+    </script>
+</body>
+</html>
